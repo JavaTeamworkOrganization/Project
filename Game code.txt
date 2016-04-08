@@ -1,0 +1,23 @@
+ theStage.setTitle( "Canvas Example" );
+
+        Group root = new Group();
+        Scene theScene = new Scene( root );
+        theStage.setScene( theScene );
+
+        Canvas canvas = new Canvas( 400, 200 );
+        root.getChildren().add( canvas );
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        gc.setFill( Color.RED );
+        gc.setStroke( Color.BLACK );
+        gc.setLineWidth(2);
+        Font theFont = Font.font( "Times New Roman", FontWeight.BOLD, 48 );
+        gc.setFont( theFont );
+        gc.fillText( "Hello, World!", 60, 50 );
+        gc.strokeText( "Hello, World!", 60, 50 );
+
+        Image earth = new Image( "eagle.jpg" );
+        gc.drawImage( earth, 180, 100 );
+
+        theStage.show();
