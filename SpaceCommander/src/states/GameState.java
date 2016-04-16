@@ -1,8 +1,7 @@
 package states;
 
-import enums.PlayerMovement;
 import game.GameEngine;
-import gameobjects.Player;
+import gameobjects.ships.Player;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
@@ -13,7 +12,7 @@ public class GameState extends State {
     private SpriteSheet backGround = new SpriteSheet(ImageLoader.loadImage("/bkg.jpg"));
     private int backGroundVelocity = 5;
     private int backGroundY = 600;
-    private Player player = new Player(this.gameEngine.getGameWidth() / 2, this.gameEngine.getGameHeight() - 100, 100, 100);
+    private Player player = new Player(this.gameEngine.getGameWidth() / 2, this.gameEngine.getGameHeight());
     private int x;
     private int y;
 
@@ -23,22 +22,6 @@ public class GameState extends State {
 
     @Override
     public void tick() {
-        if (x <= 7 && (!hasToRender)) {
-            x++;
-        } else {
-            y++;
-        }
-
-        if (this.gameEngine.inputHandler.up) {
-            this.player.move(PlayerMovement.Up);
-        } else if(this.gameEngine.inputHandler.down) {
-            this.player.move(PlayerMovement.Down);
-        } else if(this.gameEngine.inputHandler.left) {
-            this.player.move(PlayerMovement.Left);
-        } else if(this.gameEngine.inputHandler.right) {
-            this.player.move(PlayerMovement.Right);
-        }
-
 
 
         if (y == 7) {
@@ -46,11 +29,19 @@ public class GameState extends State {
             x = 0;
             this.hasToRender = true;
         }
-
+        this.player.move(this.gameEngine.inputHandler);
         this.player.tick();
         this.backGroundY -= this.backGroundVelocity;
         if (this.backGroundY < 0) {
             this.backGroundY = 600;
+        }
+
+        if (this.player.getProjectiles().size() >= 1) {
+            for (int index = 0; index < this.player.getProjectiles().size(); index++) {
+                if (this.player.getProjectiles().get(index).getY() <= 0) {
+                    this.player.getProjectiles().remove(index);
+                }
+            }
         }
     }
 

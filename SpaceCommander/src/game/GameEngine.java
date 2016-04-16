@@ -79,25 +79,21 @@ public class GameEngine implements Runnable, Updateable {
     @Override
     public void run() {
         this.init();
-        int fps = 40;
+        int fps = 60;
         double timePerTick = 1_000_000_000.0 / fps;
         double delta = 0;
         long now;
         long lastTime = System.nanoTime();
 
         while (isRunning) {
-
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             lastTime = now;
             if (delta >= 1) {
-
                 this.render(this.graphics);
                 this.tick();
                 delta -= 1;
             }
-
-
         }
 
         this.stop();

@@ -4,5 +4,6 @@ public enum PlayerMovement {
     Up,
     Down,
     Left,
-    Right
+    Right,
+    Shoot
 }

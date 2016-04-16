@@ -3,7 +3,7 @@ package contracts;
 import java.awt.*;
 
 public interface Updateable {
-    public abstract void tick();
+    void tick();
 
-    public abstract void render(Graphics graphics);
+    void render(Graphics graphics);
 }
