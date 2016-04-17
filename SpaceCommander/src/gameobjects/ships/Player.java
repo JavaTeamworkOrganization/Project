@@ -6,6 +6,7 @@ import gfx.Assets;
 import input.InputHandler;
 
 import java.awt.*;
+import java.util.Timer;
 
 public class Player extends Ship {
     private static final int WIDHT = 100;
@@ -16,6 +17,8 @@ public class Player extends Ship {
     private boolean hasShot = false;
     private int now;
     private int lastPressed;
+    public int turnLeft = 0;
+    public int turnRight = 0;
 
     private boolean isShooting;
 
@@ -40,7 +43,7 @@ public class Player extends Ship {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.playerSpriteSheet.crop(0, 0, this.width, this.height), this.x, this.y, this.width, this.height, null);
+        graphics.drawImage(Assets.playerSpriteSheet.crop(turnLeft, turnRight, this.width, this.height), this.x, this.y, this.width, this.height, null);
         for (Projectile projectile : projectiles) {
             projectile.render(graphics);
         }
@@ -51,10 +54,18 @@ public class Player extends Ship {
             this.y -= this.getVelocity() * 2;
         } else if(inputHandler.down) {
             this.y += this.getVelocity();
-        } else if(inputHandler.left) {
+        }
+        if(inputHandler.left) {
             this.x -= this.getVelocity();
+            turnLeft = 100;
+
         } else if(inputHandler.right) {
             this.x += this.getVelocity();
+            turnLeft = 100;
+            turnRight = 100;
+        }else{
+            turnLeft = 0;
+            turnRight = 0;
         }
 
         if (inputHandler.spacebar) {
