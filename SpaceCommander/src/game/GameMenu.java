@@ -56,11 +56,6 @@ public class GameMenu {
     }
 
 
-
-    public GameMenu(){
-        ImageIcon gamebkg = new ImageIcon("planets.jpg");
-    }
-
     /**
      * Method for drawing the game menu
      */
@@ -130,9 +125,7 @@ public class GameMenu {
                 // draw Controls
                 g.setColor(new Color(1, 178, 241));
                 g.setFont(new Font("Arial", Font.BOLD, 26));
-                g.drawString("PLAYER ONE", 220, 40);
-                g.drawString("PLAYER TWO", width -200, 40);
-                // player one
+                g.drawString("PLAYER", 220, 40);
                 g.setFont(new Font("Arial", Font.BOLD, 20));
                 g.drawString("Move Forward: UP_ARROW_KEY", 220, 80);
                 g.drawString("Move Back:      DOWN_ARROW_KEY", 220, 110);
