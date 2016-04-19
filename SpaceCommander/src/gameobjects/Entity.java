@@ -11,7 +11,7 @@ public abstract class Entity implements contracts.Entity {
     public Entity(int x, int y, int width, int height, int velocity) {
         this.x = x;
         this.y = y;
-        this.width = width;
+        this.setWidth(width);
         this.height = height;
         this.velocity = velocity;
         this.setBoundingBox(new Rectangle(this.x, this.y, this.width, this.height));
