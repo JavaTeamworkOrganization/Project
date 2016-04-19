@@ -32,7 +32,7 @@ public abstract class Ship extends Entity implements contracts.Ship {
     }
 
     @Override
-    public void setHealth(int getHealth) {
-        this.health = 0;
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

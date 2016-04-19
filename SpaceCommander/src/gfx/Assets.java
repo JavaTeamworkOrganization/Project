@@ -7,11 +7,13 @@ public class Assets {
     public static SpriteSheet playerSpriteSheet;
     public static SpriteSheet explosionSprite;
     public static BufferedImage bulletImage;
+    public static BufferedImage enemyImage;
 
     public static void init() {
         gameStateBackGround = ImageLoader.loadImage("/bkg.jpg");
         playerSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/player.png"));
         explosionSprite = new SpriteSheet(ImageLoader.loadImage("/explosion.png"));
         bulletImage = ImageLoader.loadImage("/bullet.gif");
+        enemyImage = ImageLoader.loadImage("/enemy.png");
     }
 }
