@@ -50,6 +50,7 @@ public class GameState extends State {
                 if (intersects) {
                     int currentHealth = this.enemy.getHealth() - bullet.getDamage();
                     enemy.setHealth(currentHealth);
+                    enemy.setIsHit(true);
                     if (enemy.getHealth() <= 0) {
                         explosions.add(new Explosion(this.enemy.getX(), this.enemy.getY(), 40, 44));
                     }

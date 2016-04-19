@@ -10,11 +10,17 @@ public class EnemyShip extends Ship {
     private static final int DEFAULT_WIDTH = 40;
     private static final int DEFAULT_HEIGHT = 44;
 
+    private int hitCountDown;
     private boolean isAlive = true;
+    private boolean ishit = false;
 
     public EnemyShip(int x, int y) {
         super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_VELOCITY, DEFAULT_HEALTH);
 
+    }
+
+    public void setIsHit(boolean isHit) {
+        this.ishit = isHit;
     }
 
     @Override
@@ -23,14 +29,22 @@ public class EnemyShip extends Ship {
         if (this.getHealth() <= 0) {
             isAlive = false;
         }
+
+        if (ishit && this.hitCountDown <= 5) {
+            this.ishit = true;
+            this.hitCountDown++;
+        } else {
+            this.ishit = false;
+            this.hitCountDown = 0;
+        }
     }
 
     @Override
     public void render(Graphics graphics) {
-        if (isAlive) {
+        if (ishit) {
+            graphics.drawImage(Assets.enemyHit, this.x, this.y, this.width, this.height, null);
+        } else {
             graphics.drawImage(Assets.enemyImage, this.x, this.y, this.width, this.height, null);
         }
-
-        graphics.drawString(String.format("%d", this.getHealth()), this.getX(), this.getY() + 50);
     }
 }

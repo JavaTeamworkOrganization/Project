@@ -9,6 +9,7 @@ public class Assets {
     public static BufferedImage bulletImage;
     public static BufferedImage enemyImage;
     public static BufferedImage gameMenuBackground;
+    public static BufferedImage enemyHit;
 
     public static void init() {
         gameStateBackGround = ImageLoader.loadImage("/bkg.jpg");
@@ -17,5 +18,6 @@ public class Assets {
         bulletImage = ImageLoader.loadImage("/bullet.gif");
         enemyImage = ImageLoader.loadImage("/enemy.png");
         gameMenuBackground = ImageLoader.loadImage("/planets.jpg");
+        enemyHit = ImageLoader.loadImage("/enemyDamaged.png");
     }
 }

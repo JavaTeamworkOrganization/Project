@@ -32,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6666667">
-              <caret line="64" column="49" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#555#556#0" expanded="true" />
@@ -56,32 +56,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gameobjects/ships/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Assets.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gfx/Assets.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gameobjects/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.3809524">
+              <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2671#2672#0" expanded="true" />
+                <element signature="e#2748#2749#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,7 +84,27 @@
         <entry file="file://$PROJECT_DIR$/src/gameobjects/ships/EnemyShip.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+              <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+              <folding>
+                <element signature="e#581#582#0" expanded="true" />
+                <element signature="e#615#616#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enemyDamaged.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/enemyDamaged.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/states/GameState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -103,13 +117,6 @@
               <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pause.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/pause.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -153,16 +160,17 @@
         <option value="$PROJECT_DIR$/src/PlayerMovement.java" />
         <option value="$PROJECT_DIR$/src/gameobjects/PlayerMovement.java" />
         <option value="$PROJECT_DIR$/src/enums/PlayerMovement.java" />
-        <option value="$PROJECT_DIR$/src/gameobjects/Player.java" />
-        <option value="$PROJECT_DIR$/src/states/GameState.java" />
         <option value="$PROJECT_DIR$/src/game/GameMenu.java" />
         <option value="$PROJECT_DIR$/src/gameobjects/Entity.java" />
         <option value="$PROJECT_DIR$/src/gameobjects/ships/Player.java" />
         <option value="$PROJECT_DIR$/src/gameobjects/ships/Ship.java" />
         <option value="$PROJECT_DIR$/src/game/GameEngine.java" />
         <option value="$PROJECT_DIR$/src/states/GameMenu.java" />
-        <option value="$PROJECT_DIR$/src/gfx/Assets.java" />
         <option value="$PROJECT_DIR$/src/states/Menu.java" />
+        <option value="$PROJECT_DIR$/src/gfx/Assets.java" />
+        <option value="$PROJECT_DIR$/src/states/GameState.java" />
+        <option value="$PROJECT_DIR$/src/gameobjects/ships/EnemyShip.java" />
+        <option value="$PROJECT_DIR$/src/gameobjects/Player.java" />
       </list>
     </option>
   </component>
@@ -722,7 +730,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -942,14 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/StateManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1077,11 +1077,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/enemyDameged.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/enemy.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1115,11 +1110,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameobjects/ships/EnemyShip.java">
+    <entry file="file://$PROJECT_DIR$/src/states/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding />
+          <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#584#585#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1127,14 +1126,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameobjects/ships/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1150,27 +1141,43 @@
     <entry file="file://$PROJECT_DIR$/src/gfx/Assets.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/enemyDamaged.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/ships/EnemyShip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+          <folding>
+            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameobjects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6666667">
-          <caret line="64" column="49" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.3809524">
+          <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#555#556#0" expanded="true" />
-            <element signature="e#584#585#0" expanded="true" />
+            <element signature="e#2671#2672#0" expanded="true" />
+            <element signature="e#2748#2749#0" expanded="true" />
           </folding>
         </state>
       </provider>
