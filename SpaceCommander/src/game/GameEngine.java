@@ -3,9 +3,8 @@ package game;
 import contracts.Updateable;
 import gfx.Assets;
 import input.InputHandler;
-import states.GameState;
-import states.State;
-import states.StateManager;
+import states.*;
+import states.Menu;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -47,7 +46,7 @@ public class GameEngine implements Runnable, Updateable {
         inputHandler = new InputHandler(this.display.getFrame());
 
         //init States
-        this.gameState = new GameState(this);
+        this.gameState = new Menu(this);
         StateManager.setState(this.gameState);
 
         //init Assets

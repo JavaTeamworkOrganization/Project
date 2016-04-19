@@ -16,11 +16,6 @@ public class Player extends Ship {
     private boolean hasShot = false;
     private int now;
     private int lastPressed;
-    private boolean hasTurnedLeft;
-    private boolean hasTurnedRight;
-
-    public int turnLeft = 0;
-    public int turnRight = 0;
 
     private boolean isShooting;
 
@@ -45,51 +40,25 @@ public class Player extends Ship {
 
     @Override
     public void render(Graphics graphics) {
-        if (this.hasTurnedLeft) {
-            graphics.drawImage(Assets.playerSpriteSheet.crop(100, 0, this.width, this.height), this.x, this.y, this.width, this.height, null);
-        } else if (this.hasTurnedRight) {
-            graphics.drawImage(Assets.playerSpriteSheet.crop(100, 100, this.getWidth(), this.height), this.x, this.y, this.width, this.height, null);
-        } else {
-            graphics.drawImage(Assets.playerSpriteSheet.crop(0, 0, 100, 100), this.x, this.y, this.width, this.height, null);
-        }
-
-
+        graphics.drawImage(Assets.playerSpriteSheet.crop(0, 0, this.width, this.height), this.x, this.y, this.width, this.height, null);
         for (Projectile projectile : projectiles) {
             projectile.render(graphics);
         }
     }
 
     public void move(InputHandler inputHandler) {
-        this.hasTurnedLeft = false;
-        this.hasTurnedRight = false;
         if (inputHandler.up) {
             this.y -= this.getVelocity() * 2;
         } else if(inputHandler.down) {
             this.y += this.getVelocity();
-        }
-        if(inputHandler.left) {
+        } else if(inputHandler.left) {
             this.x -= this.getVelocity();
-            this.hasTurnedLeft = true;
-            this.hasTurnedRight = false;
-            turnLeft = 100;
-
         } else if(inputHandler.right) {
             this.x += this.getVelocity();
-            this.hasTurnedRight = true;
-            this.hasTurnedLeft = false;
-            turnLeft = 100;
-            turnRight = 100;
-        }else{
-            turnLeft = 0;
-            turnRight = 0;
         }
 
-        this.now++;
         if (inputHandler.spacebar) {
-
-//            if (this.now % 20 == 0) {
-//                this.shoot();
-//            }
+            this.now++;
             if (!this.hasShot) {
 
                 System.out.println(now - lastPressed);
@@ -97,12 +66,9 @@ public class Player extends Ship {
                 this.shoot();
                 this.hasShot = true;
             }
-       } else {
-           this.hasShot = false;
-       }
-//        } else {
-//            this.now = 0;
-//        }
+        } else {
+            this.hasShot = false;
+        }
     }
 
     private void shoot() {
