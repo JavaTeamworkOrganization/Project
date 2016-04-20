@@ -1,7 +1,6 @@
 package gameobjects.ships;
 
 import contracts.Projectile;
-import game.Score;
 import gameobjects.projectiles.BlueLaser;
 import gfx.Assets;
 import input.InputHandler;
