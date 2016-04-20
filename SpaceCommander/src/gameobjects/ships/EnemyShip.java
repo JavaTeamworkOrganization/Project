@@ -7,7 +7,7 @@ import gfx.Assets;
 import java.awt.*;
 
 public class EnemyShip extends Ship {
-    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_HEALTH = 30;
     private static final int DEFAULT_VELOCITY = 2;
     private static final int DEFAULT_WIDTH = 50;
     private static final int DEFAULT_HEIGHT = 54;

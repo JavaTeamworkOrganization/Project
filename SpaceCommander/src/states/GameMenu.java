@@ -111,7 +111,7 @@
 //
 //        } else {  // draw SETTINGS MENU
 //            if (!isBackButtonClicked){
-//                g.drawImage(Assets.gameMenuBackground, 0, 0, null);
+//                g.drawImage(Assets.gameSettings, 0, 0, null);
 //                g.setColor(new Color(1, 14, 22));
 //                int width = screenWidth - 400;
 //                g.fillRect(200, 0, width, screenHeight);
