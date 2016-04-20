@@ -7,7 +7,7 @@ import java.awt.*;
 public class EnemyBullet extends Projectile {
     private final static int WIDTH = 17 / 2;
     private final static int HEIGHT = 47 / 2;
-    private final static int VELOCITY = 10;
+    private final static int VELOCITY = 7;
     private final static int DAMAGE = 10;
 
     public EnemyBullet(int x, int y) {

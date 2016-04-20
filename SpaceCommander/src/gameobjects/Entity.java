@@ -45,11 +45,11 @@ public abstract class Entity implements contracts.Entity {
         this.y = y;
     }
 
-    protected  int getHeight() {
+    public  int getHeight() {
         return this.height;
     }
 
-    protected int getWidth() {
+    public int getWidth() {
         return this.width;
     }
 

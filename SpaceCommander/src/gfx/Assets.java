@@ -10,7 +10,10 @@ public class Assets {
     public static BufferedImage enemyBulletImage;
     public static BufferedImage enemyImage;
     public static BufferedImage gameMenuBackground;
-    public static BufferedImage enemyHit,gameSettings;
+    public static BufferedImage enemyHit;
+    public static BufferedImage enemyLaser;
+    public static BufferedImage enemyFighter;
+    public static BufferedImage blueLaser;
 
     public static void init() {
         gameStateBackGround = new SpriteSheet(ImageLoader.loadImage("/bkg.jpg"));
@@ -21,6 +24,8 @@ public class Assets {
         enemyImage = ImageLoader.loadImage("/enemy.png");
         gameMenuBackground = ImageLoader.loadImage("/planets.jpg");
         enemyHit = ImageLoader.loadImage("/enemyDamaged.png");
-        gameSettings = ImageLoader.loadImage("/gameMenuBkg.jpg");
+        enemyLaser = ImageLoader.loadImage("/laser.png");
+        enemyFighter = ImageLoader.loadImage("/fighter.png");
+        blueLaser = ImageLoader.loadImage("/blueLaser.png");
     }
 }

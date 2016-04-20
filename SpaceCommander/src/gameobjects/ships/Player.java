@@ -1,7 +1,7 @@
 package gameobjects.ships;
 
 import contracts.Projectile;
-import gameobjects.projectiles.Bullet;
+import gameobjects.projectiles.BlueLaser;
 import gfx.Assets;
 import input.InputHandler;
 
@@ -40,6 +40,10 @@ public class Player extends Ship {
 
     @Override
     public void render(Graphics graphics) {
+        for (Projectile projectile : projectiles) {
+            projectile.render(graphics);
+        }
+
         if (this.hasTurnedLeft) {
             graphics.drawImage(Assets.playerSpriteSheet.crop(100, 0, this.width, this.height), this.x, this.y, this.width, this.height, null);
         } else if (this.hasTurnedRight) {
@@ -48,9 +52,7 @@ public class Player extends Ship {
             graphics.drawImage(Assets.playerSpriteSheet.crop(0, 0, this.width, this.height), this.x, this.y, this.width, this.height, null);
         }
 
-        for (Projectile projectile : projectiles) {
-            projectile.render(graphics);
-        }
+
     }
 
     public void move(InputHandler inputHandler) {
@@ -71,18 +73,24 @@ public class Player extends Ship {
         if (inputHandler.spacebar) {
             this.now++;
             if (!this.hasShot) {
-
-                System.out.println(now - lastPressed);
-                lastPressed = now;
                 this.shoot();
                 this.hasShot = true;
             }
+
+            if (this.now % 14 == 0) {
+                System.out.println(now - lastPressed);
+                lastPressed = now;
+                this.shoot();
+            }
+
         } else {
+            this.now = 0;
             this.hasShot = false;
         }
     }
 
     private void shoot() {
-        this.addProjectile(new Bullet(this.getX() + 43, this.getY()));
+        this.addProjectile(new BlueLaser(this.getX() + 40, this.getY() + 40));
+        this.addProjectile(new BlueLaser(this.getX() + 57, this.getY() + 40));
     }
 }

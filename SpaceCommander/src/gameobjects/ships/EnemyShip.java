@@ -1,76 +1,39 @@
 package gameobjects.ships;
 
-import contracts.Projectile;
-import gameobjects.projectiles.EnemyBullet;
-import gfx.Assets;
+public abstract class EnemyShip extends Ship implements contracts.EnemyShip {
+    private final static int DEFAULT_X_VELOCITY = 0;
 
-import java.awt.*;
+    private int shootingCounter;
+    private int shootingRate;
+    private int xVelocity;
 
-public class EnemyShip extends Ship {
-    private static final int DEFAULT_HEALTH = 30;
-    private static final int DEFAULT_VELOCITY = 2;
-    private static final int DEFAULT_WIDTH = 50;
-    private static final int DEFAULT_HEIGHT = 54;
-    private static final int SHOOTING_RATIO = 30;
-
-    private int shootingCount;
-    private int hitCountDown;
-    private boolean isAlive = true;
-    private boolean ishit = false;
-
-    public EnemyShip(int x, int y) {
-        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_VELOCITY, DEFAULT_HEALTH);
+    public EnemyShip(int x, int y, int width, int height, int velocity, int health, int shootingRate) {
+        super(x, y, width, height, velocity, health);
+        this.setXVelocity(DEFAULT_X_VELOCITY);
+        this.setShootingRate(shootingRate);
     }
 
-    public void setIsHit(boolean isHit) {
-        this.ishit = isHit;
+    protected int getShootingCounter() {
+        return this.shootingCounter;
     }
 
-    @Override
-    public void tick() {
-        this.shootingCount++;
-        if (this.shootingCount >= SHOOTING_RATIO) {
-            this.shoot();
-            this.shootingCount = 0;
-        }
-        this.getBoundingBox().setBounds(this.x, this.y, this.width, this.height);
-        if (this.getHealth() <= 0) {
-            isAlive = false;
-        }
-
-        if (ishit && this.hitCountDown <= 5) {
-            this.ishit = true;
-            this.hitCountDown++;
-        } else {
-            this.ishit = false;
-            this.hitCountDown = 0;
-        }
-
-        int currentY = this.getY() + this.velocity;
-        this.setY(currentY);
-        if (this.getProjectiles().size() > 1) {
-            for (Projectile projectile : projectiles) {
-                projectile.tick();
-            }
-        }
+    protected void setShootingCounter(int shootingCounter) {
+        this.shootingCounter = shootingCounter;
     }
 
-    @Override
-    public void render(Graphics graphics) {
-        if (ishit) {
-            graphics.drawImage(Assets.enemyHit, this.x, this.y, this.width, this.height, null);
-        } else {
-            graphics.drawImage(Assets.enemyImage, this.x, this.y, this.width, this.height, null);
-        }
-
-        if (this.getProjectiles().size() > 1) {
-            for (Projectile projectile : projectiles) {
-                projectile.render(graphics);
-            }
-        }
+    private void setShootingRate(int shootingRate) {
+        this.shootingRate = shootingRate;
     }
 
-    private void shoot() {
-        this.addProjectile(new EnemyBullet(this.getX() + 18, this.getY() + 30));
+    protected int getShootingRate() {
+        return this.shootingRate;
+    }
+
+    public void setXVelocity(int xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public int getXVelocity() {
+        return this.xVelocity;
     }
 }

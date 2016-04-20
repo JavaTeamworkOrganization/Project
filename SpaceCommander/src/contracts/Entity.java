@@ -7,5 +7,9 @@ public interface Entity extends Intersectable, Updateable {
 
     int getX();
 
+    int getWidth();
+
+    int getHeight();
+
     Rectangle getBoundingBox();
 }

@@ -8,6 +8,9 @@ import java.util.List;
 
 public abstract class Ship extends Entity implements contracts.Ship {
     private int health;
+    private int hitCountDown;
+    private boolean ishit;
+    private boolean isAlive;
     protected ArrayList<Projectile> projectiles;
 
 
@@ -15,6 +18,8 @@ public abstract class Ship extends Entity implements contracts.Ship {
         super(x, y, width, height, velocity);
         this.health = health;
         this.projectiles = new ArrayList<>();
+        this.setIsHit(false);
+        this.setIsAlive(true);
     }
 
     protected void addProjectile(Projectile projectile) {
@@ -34,5 +39,39 @@ public abstract class Ship extends Entity implements contracts.Ship {
     @Override
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public void setIsHit(boolean isHit) {
+        this.ishit = isHit;
+    }
+
+    protected boolean getIsHit() {
+        return this.ishit;
+    }
+
+    public void setIsAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+
+    public boolean getIsAlive() {
+        return this.isAlive;
+    }
+
+    protected void setHitCountDown(int hitCountDown) {
+        this.hitCountDown = hitCountDown;
+    }
+
+    protected int getHitCountDown() {
+        return this.hitCountDown;
+    }
+
+    protected void drawHitImage() {
+        if (this.getIsHit() && this.getHitCountDown() <= 5) {
+            this.setIsHit(true);
+            this.setHitCountDown(this.getHitCountDown() + 1);
+        } else {
+            this.setIsHit(false);
+            this.setHitCountDown(0);
+        }
     }
 }
