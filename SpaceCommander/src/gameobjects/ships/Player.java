@@ -1,6 +1,7 @@
 package gameobjects.ships;
 
 import contracts.Projectile;
+import game.Score;
 import gameobjects.projectiles.BlueLaser;
 import gfx.Assets;
 import input.InputHandler;
@@ -24,6 +25,8 @@ public class Player extends Ship {
         super(x, y, WIDHT, HEIGHT, VELOCITY, DEFAULT_HEALTH);
     }
 
+    public int playerHealth =  DEFAULT_HEALTH;
+
     @Override
     public void tick() {
         this.getBoundingBox().setBounds(this.x + 23, this.y + 20, this.width - 46, this.height - 40);
@@ -32,7 +35,6 @@ public class Player extends Ship {
         if (this.getY() > 500) {
             this.setY(500);
         }
-
         for (Projectile projectile : projectiles) {
             projectile.tick();
         }
