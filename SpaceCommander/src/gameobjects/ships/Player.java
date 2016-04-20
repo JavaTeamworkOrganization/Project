@@ -20,11 +20,8 @@ public class Player extends Ship {
     private int now;
     private int lastPressed;
 
-    private boolean isShooting;
-
     public Player(int x, int y) {
         super(x, y, WIDHT, HEIGHT, VELOCITY, DEFAULT_HEALTH);
-        this.isShooting = true;
     }
 
     @Override

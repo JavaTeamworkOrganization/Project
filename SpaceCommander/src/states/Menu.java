@@ -9,14 +9,15 @@ public class Menu extends State {
     private int index;
     private boolean isDownPressed = false;
     private boolean isUpPressed = false;
+    private boolean isSpacePressed = false;
 
     private int padding = 25;
-    private int startButtonY    = 600 - (600 - ((45 * 600) / 100));
+    private int startButtonY    = this.gameEngine.getGameHeight() - (this.gameEngine.getGameHeight() - ((45 * this.gameEngine.getGameHeight()) / 100));
     private int settingsButtonY = startButtonY + 70;
     private int exitButtonY     = settingsButtonY + 70;
     private int backButtonY     = 600 - 100;
 
-    private int buttonX = (800 / 2) - 100;
+    private int buttonX = (this.gameEngine.getGameWidth() / 2) - 100;
 
     public Menu(GameEngine engine) {
         super(engine);

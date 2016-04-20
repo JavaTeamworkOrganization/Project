@@ -2,46 +2,33 @@ package states;
 
 import contracts.Projectile;
 import game.GameEngine;
+import gameobjects.BackGround;
 import gameobjects.Explosion;
 import gameobjects.ships.EnemyShip;
 import gameobjects.ships.Player;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameState extends State {
     private ArrayList<Explosion> explosions = new ArrayList<>();
-    private boolean hasToRender = true;
-    private SpriteSheet backGround = new SpriteSheet(ImageLoader.loadImage("/bkg.jpg"));
-    private int backGroundVelocity = 5;
-    private int backGroundY = 600;
     private Player player = new Player(this.gameEngine.getGameWidth() / 2, this.gameEngine.getGameHeight());
-    private int x;
-    private int y;
+    private BackGround backGround;
 
     private EnemyShip enemy = new EnemyShip(this.gameEngine.getGameWidth() / 2, 0);
 
     public GameState(GameEngine gameEngine) {
         super(gameEngine);
+        this.backGround = new BackGround(0, 0, this.gameEngine.getGameWidth(), this.gameEngine.getGameHeight(), 5);
     }
 
     @Override
     public void tick() {
-
-
-        if (y == 7) {
-            y = 0;
-            x = 0;
-            this.hasToRender = true;
-        }
         this.player.move(this.gameEngine.inputHandler);
         this.player.tick();
-        this.backGroundY -= this.backGroundVelocity;
-        if (this.backGroundY < 0) {
-            this.backGroundY = 600;
-        }
+        this.backGround.tick();
+        enemy.tick();
 
         if (this.player.getProjectiles().size() >= 1) {
             for (int index = 0; index < this.player.getProjectiles().size(); index++) {
@@ -52,9 +39,20 @@ public class GameState extends State {
                     enemy.setHealth(currentHealth);
                     enemy.setIsHit(true);
                     if (enemy.getHealth() <= 0) {
-                        explosions.add(new Explosion(this.enemy.getX(), this.enemy.getY(), 40, 44));
+                        explosions.add(new Explosion(this.enemy.getX(), this.enemy.getY(), 50, 54));
                     }
                     this.player.getProjectiles().remove(index);
+                }
+            }
+        }
+
+        if (this.enemy.getProjectiles().size() > 1) {
+            for (int index = 0; index < this.enemy.getProjectiles().size(); index++) {
+                Projectile projectile = this.enemy.getProjectiles().get(index);
+                if (projectile.intersect(this.player.getBoundingBox())) {
+                    int currentHealth = this.player.getHealth() - projectile.getDamage();
+                    this.enemy.getProjectiles().remove(index);
+                    this.player.setHealth(currentHealth);
                 }
             }
         }
@@ -66,19 +64,32 @@ public class GameState extends State {
                 }
             }
         }
+
+        if (this.enemy.getProjectiles().size() >= 1) {
+            for (int index = 0; index < this.enemy.getProjectiles().size(); index++) {
+                if (this.enemy.getProjectiles().get(index).getY() <= 0) {
+                    this.enemy.getProjectiles().remove(index);
+                }
+            }
+        }
         if (this.explosions.size() >= 1) {
             for (int i = 0; i < this.explosions.size(); i++) {
                 this.explosions.get(i).tick();
             }
         }
 
+        if (this.enemy.getY() >= 600 || this.enemy.getHealth() <= 0) {
+            Random randomGenerator = new Random();
+            int nextX = randomGenerator.nextInt(800);
+            this.enemy = new EnemyShip(nextX, -40);
+        }
 
-        enemy.tick();
+
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(backGround.crop(0, this.backGroundY, 800, 600), 0, 0, 800, 600, null);
+        this.backGround.render(graphics);
         if (this.enemy.getHealth() > 0) {
             this.enemy.render(graphics);
         }
@@ -91,8 +102,6 @@ public class GameState extends State {
             }
         }
 
-        if (hasToRender) {
-            this.player.render(graphics);
-        }
+        this.player.render(graphics);
     }
 }
