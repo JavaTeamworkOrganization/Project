@@ -6,8 +6,8 @@ import gameobjects.BackGround;
 import gameobjects.Explosion;
 import gameobjects.ships.EnemyDestroyer;
 import gameobjects.ships.EnemyShip;
-import gameobjects.ships.RegularEnemy;
 import gameobjects.ships.Player;
+import gameobjects.ships.RegularEnemy;
 
 import java.awt.*;
 import java.util.*;
@@ -71,7 +71,7 @@ public class GameState extends State {
         }
 
         if (this.player.getHealth() <= 0) {
-            StateManager.setState(new Menu(this.gameEngine));
+            StateManager.setState(new GameOver(this.gameEngine, this.player.getScore()));
         }
     }
 
@@ -96,6 +96,7 @@ public class GameState extends State {
         graphics.setColor(Color.WHITE);
         graphics.drawString("HP", 575, 29);
         graphics.drawString(String.format("%d", this.player.getHealth()), 600 + ((this.player.getHealth() * 2) / 2) - 4, 29);
+        graphics.drawString(String.format("Score: %d", this.player.getScore()), 575, 60);
 
         this.player.render(graphics);
 
@@ -113,6 +114,13 @@ public class GameState extends State {
         while (enemyShipIterator.hasNext()) {
             EnemyShip enemy = enemyShipIterator.next();
             enemy.tick();
+            if (enemy.intersect(this.player.getBoundingBox()) && enemy.getIsAlive()) {
+                this.explosions.add(new Explosion(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight()));
+                int playerCurrentHealth = this.player.getHealth() - enemy.getHealth();
+                this.player.setHealth(playerCurrentHealth);
+                this.player.setScore(this.player.getScore() + enemy.getScorePoints());
+                enemy.setIsAlive(false);
+            }
 
             this.intersectPlayerBullet(enemy);
             this.enemyBulletIntersectPlayer(enemy);
@@ -143,6 +151,7 @@ public class GameState extends State {
                     if (enemy.getHealth() <= 0) {
                         explosions.add(new Explosion(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight()));
                         enemy.setIsHit(false);
+                        this.player.setScore(this.player.getScore() + enemy.getScorePoints());
                     }
 
                     this.player.getProjectiles().remove(playerBullet);

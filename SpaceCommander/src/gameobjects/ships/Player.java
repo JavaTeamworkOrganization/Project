@@ -23,9 +23,20 @@ public class Player extends Ship {
     private int now;
     private int timesShot;
 
+    private int score;
+
     public Player(int x, int y) {
         super(x, y, WIDHT, HEIGHT, VELOCITY, DEFAULT_HEALTH);
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
 
     @Override
     public void tick() {
@@ -55,8 +66,6 @@ public class Player extends Ship {
         } else {
             graphics.drawImage(Assets.playerSpriteSheet.crop(0, 0, this.width, this.height), this.x, this.y, this.width, this.height, null);
         }
-
-
     }
 
     public void move(InputHandler inputHandler) {
