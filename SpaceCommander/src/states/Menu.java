@@ -46,6 +46,8 @@ public class Menu extends State {
         if (this.index == 0 && this.gameEngine.inputHandler.spacebar) {
             StateManager.setState(new GameState(this.gameEngine));
         }
+        if (this.index == 2 && this.gameEngine.inputHandler.spacebar) {
+        }
 
         if (this.index < 0) {
             this.index = 0;
@@ -75,7 +77,7 @@ public class Menu extends State {
             graphics.setColor(new Color(255, 37, 81));
         }
 
-        graphics.drawString("SETTINGS", buttonX + 60, settingsButtonY + padding);
+        graphics.drawString("INSTRUCTIONS", buttonX + 30, settingsButtonY + padding);
         if (this.index == 2) {
             graphics.setColor(new Color(252, 255, 35));
         } else {
