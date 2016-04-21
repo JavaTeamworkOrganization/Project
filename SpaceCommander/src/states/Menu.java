@@ -80,7 +80,23 @@ public class Menu extends State {
         } else {
             graphics.setColor(new Color(255, 37, 81));
         }
-
         graphics.drawString("EXIT", buttonX + 95, exitButtonY + padding);
+        if (this.index == 1 && GameEngine.inputHandler.spacebar) {
+            graphics.drawImage(Assets.gameMenuBackground, 0, 0, 800, 600, null);
+            graphics.setColor(new Color(5, 6, 22));
+            graphics.fillRect(0, 0, 800, 800);
+
+            graphics.setColor(new Color(1, 178, 241));
+            graphics.setFont(new Font("Arial", Font.BOLD, 26));
+            graphics.drawString("PLAYER", 220, 40);
+            graphics.setFont(new Font("Arial", Font.BOLD, 20));
+            graphics.drawString("Move Forward: UP_ARROW_KEY", 220, 80);
+            graphics.drawString("Move Back:      DOWN_ARROW_KEY", 220, 110);
+            graphics.drawString("Move Right:      RIGHT_ARROW_KEY", 220, 140);
+            graphics.drawString("Move Left:        LEFT_ARROW_KEY", 220, 170);
+            graphics.drawString("Blaster:            Space", 220, 200);
+//            graphics.setFont(new Font("Arial", Font.BOLD, 25));
+//            graphics.drawString("Go to main menu: Backspace", 200, 350);
+        }
     }
 }
