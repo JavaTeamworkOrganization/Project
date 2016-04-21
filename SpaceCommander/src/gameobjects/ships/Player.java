@@ -10,30 +10,33 @@ import java.awt.*;
 public class Player extends Ship {
     private static final int WIDHT = 100;
     private static final int HEIGHT = 100;
-    private static final int VELOCITY = 5;
+    private static final int VELOCITY = 7;
     private static final int DEFAULT_HEALTH = 100;
+    private static final int FRAMES_UNTIL_NEXT_SHOT = 40;
 
-    private boolean hasShot = false;
     private boolean hasTurnedLeft;
     private boolean hasTurnedRight;
 
+    private int spaceDisabilityCouner;
+    private boolean spaceBarHitted;
+    private boolean hashShot;
     private int now;
-    private int lastPressed;
+    private int timesShot;
 
     public Player(int x, int y) {
         super(x, y, WIDHT, HEIGHT, VELOCITY, DEFAULT_HEALTH);
     }
 
-    public int playerHealth =  DEFAULT_HEALTH;
-
     @Override
     public void tick() {
         this.getBoundingBox().setBounds(this.x + 23, this.y + 20, this.width - 46, this.height - 40);
-        this.now++;
         this.y += this.getVelocity();
         if (this.getY() > 500) {
             this.setY(500);
         }
+
+        drawHitImage();
+
         for (Projectile projectile : projectiles) {
             projectile.tick();
         }
@@ -59,11 +62,7 @@ public class Player extends Ship {
     public void move(InputHandler inputHandler) {
         this.hasTurnedLeft = false;
         this.hasTurnedRight = false;
-        if (inputHandler.up) {
-            this.y -= this.getVelocity() * 2;
-        } else if(inputHandler.down) {
-            this.y += this.getVelocity();
-        } else if(inputHandler.left) {
+        if(inputHandler.left) {
             this.hasTurnedLeft = true;
             this.x -= this.getVelocity();
         } else if(inputHandler.right) {
@@ -72,21 +71,29 @@ public class Player extends Ship {
         }
 
         if (inputHandler.spacebar) {
+            this.spaceBarHitted = true;
+        }
+
+        if (this.spaceBarHitted && this.timesShot <= 2) {
             this.now++;
-            if (!this.hasShot) {
-                this.shoot();
-                this.hasShot = true;
-            }
-
-            if (this.now % 14 == 0) {
-                System.out.println(now - lastPressed);
-                lastPressed = now;
+            if (this.now % 5 == 0) {
+                this.timesShot++;
                 this.shoot();
             }
+        }
 
+        if (this.timesShot >= 2) {
+            this.hashShot = true;
         } else {
-            this.now = 0;
-            this.hasShot = false;
+            this.hashShot = false;
+        }
+
+        if (this.hashShot && this.spaceDisabilityCouner <= FRAMES_UNTIL_NEXT_SHOT) {
+            this.spaceDisabilityCouner++;
+        } else if (this.spaceDisabilityCouner >= FRAMES_UNTIL_NEXT_SHOT) {
+            this.timesShot = 0;
+            this.spaceDisabilityCouner = 0;
+            this.spaceBarHitted = false;
         }
     }
 

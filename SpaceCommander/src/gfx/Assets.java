@@ -14,20 +14,20 @@ public class Assets {
     public static BufferedImage enemyLaser;
     public static BufferedImage enemyFighter;
     public static BufferedImage blueLaser;
-    public static BufferedImage Title;
+    public static BufferedImage damagesDestroyer;
 
     public static void init() {
-        gameStateBackGround = new SpriteSheet(ImageLoader.loadImage("/bkg.jpg"));
+        gameStateBackGround = new SpriteSheet(ImageLoader.loadImage("/spaceBackGround.jpg"));
         playerSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/player.png"));
         explosionSprite = new SpriteSheet(ImageLoader.loadImage("/explosion.png"));
         bulletImage = ImageLoader.loadImage("/bullet.gif");
         enemyBulletImage = ImageLoader.loadImage("/enemy_bullet.gif");
         enemyImage = ImageLoader.loadImage("/enemy.png");
-        gameMenuBackground = ImageLoader.loadImage("/gameMenuBkg.jpg");
+        gameMenuBackground = ImageLoader.loadImage("/planets.jpg");
         enemyHit = ImageLoader.loadImage("/enemyDamaged.png");
         enemyLaser = ImageLoader.loadImage("/laser.png");
-        enemyFighter = ImageLoader.loadImage("/fighter.png");
+        enemyFighter = ImageLoader.loadImage("/destroyer.png");
         blueLaser = ImageLoader.loadImage("/blueLaser.png");
-        Title = ImageLoader.loadImage("/Background.png");
+        damagesDestroyer = ImageLoader.loadImage("/damagedDestroyer.png");
     }
 }

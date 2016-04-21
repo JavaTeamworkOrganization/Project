@@ -7,14 +7,15 @@ import gfx.Assets;
 import java.awt.*;
 
 public class RegularEnemy extends EnemyShip {
+    private static final int SOORE_POINTS = 10;
     private static final int DEFAULT_HEALTH = 30;
-    private static final int DEFAULT_VELOCITY = 2;
+    private static final int DEFAULT_VELOCITY = 1;
     private static final int DEFAULT_WIDTH = 50;
     private static final int DEFAULT_HEIGHT = 54;
-    private static final int SHOOTING_RATE = 90;
+    private static final int SHOOTING_RATE = 120;
 
     public RegularEnemy(int x, int y) {
-        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_VELOCITY, DEFAULT_HEALTH, SHOOTING_RATE);
+        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_VELOCITY, DEFAULT_HEALTH, SHOOTING_RATE, SOORE_POINTS);
     }
 
     @Override

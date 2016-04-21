@@ -14,7 +14,6 @@ public class GameEngine implements Runnable, Updateable {
     public static final int DEFAULT_GAME_WIDTH = 800;
     public static final int DEFAULT_GAME_HEIGHT = 600;
 
-
     private Thread mainThread;
     private boolean isRunning;
 
@@ -27,6 +26,8 @@ public class GameEngine implements Runnable, Updateable {
     private Graphics graphics;
     private BufferStrategy bs;
 
+    private boolean isPaused;
+
     //States
     private State gameState;
 
@@ -34,6 +35,7 @@ public class GameEngine implements Runnable, Updateable {
         this.gameTitle = title;
         this.setGameWidth(DEFAULT_GAME_WIDTH);
         this.setGameHeight(DEFAULT_GAME_HEIGHT);
+        this.isPaused = false;
     }
 
     private void init() {
@@ -55,6 +57,12 @@ public class GameEngine implements Runnable, Updateable {
 
     @Override
     public void tick() {
+        if (inputHandler.escape && !this.isPaused) {
+            this.isPaused = true;
+        } else if (inputHandler.escape) {
+            this.isPaused = false;
+        }
+
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
@@ -66,7 +74,7 @@ public class GameEngine implements Runnable, Updateable {
         g.clearRect(0, 0, this.getGameWidth(), this.getGameHeight());
         //Start Draw
 
-        if (StateManager.getState() != null) {
+        if (StateManager.getState() != null && !this.isPaused) {
             StateManager.getState().render(g);
         }
 
@@ -93,6 +101,7 @@ public class GameEngine implements Runnable, Updateable {
                 this.tick();
                 delta -= 1;
             }
+
         }
 
         this.stop();

@@ -8,4 +8,8 @@ public interface Ship extends Entity, Destroyable {
     void setIsAlive(boolean isAlive);
 
     boolean getIsAlive();
+
+    void setIsHit(boolean isHit);
+
+    boolean getIsHit();
 }

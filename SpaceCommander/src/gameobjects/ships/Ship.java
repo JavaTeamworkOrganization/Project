@@ -45,7 +45,7 @@ public abstract class Ship extends Entity implements contracts.Ship {
         this.ishit = isHit;
     }
 
-    protected boolean getIsHit() {
+    public boolean getIsHit() {
         return this.ishit;
     }
 

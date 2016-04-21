@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class InputHandler implements KeyListener {
-    public boolean up, down, left, right, spacebar;
+    public boolean up, down, left, right, spacebar, escape;
 
     public InputHandler(JFrame frame) {
         frame.addKeyListener(this);
@@ -30,6 +30,8 @@ public class InputHandler implements KeyListener {
             this.right = true;
         } else if (keyCode == KeyEvent.VK_SPACE) {
             this.spacebar = true;
+        } else if (keyCode == KeyEvent.VK_ESCAPE) {
+            this.escape = true;
         }
     }
 
@@ -47,6 +49,8 @@ public class InputHandler implements KeyListener {
             this.right = false;
         } else if (keyCode == KeyEvent.VK_SPACE) {
             this.spacebar = false;
+        } else if (keyCode == KeyEvent.VK_ESCAPE) {
+            this.escape = false;
         }
     }
 }

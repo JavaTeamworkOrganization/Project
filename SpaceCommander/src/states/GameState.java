@@ -20,13 +20,12 @@ public class GameState extends State {
     private BackGround backGround;
 
     private Random randomEnemyXGenerator;
-    private int regularEnemyRate = 70 ;
-    private int fighterRate = 100;
-    private int enemyGeneratingConter;
+    private int regularEnemyRate = 200;
+    private int fighterRate = 400;
+    private int minFighetrRate = 200;
+    private int minRegularEnemyRate = 100;
 
-    private int secondsElapsed = 1;
-    private int currentFrame;
-    private int fps = 60;
+    private int frameCounter = 1;
 
     public GameState(GameEngine gameEngine) {
         super(gameEngine);
@@ -37,38 +36,66 @@ public class GameState extends State {
 
     @Override
     public void tick() {
+        this.frameCounter++;
+        if (this.frameCounter == Integer.MAX_VALUE) {
+            this.frameCounter = 0;
+        } else if (this.frameCounter % 600 == 0 && this.regularEnemyRate <= this.minRegularEnemyRate) {
+            this.regularEnemyRate -= 10;
+        } else if (this.frameCounter % 600 == 0 && this.fighterRate <= this.minFighetrRate) {
+            this.fighterRate -= 10;
+        }
 
         this.updateShips();
 
-        this.enemyGeneratingConter++;
-        if (this.enemyGeneratingConter % this.regularEnemyRate == 0) {
+        if (this.frameCounter % this.regularEnemyRate == 0) {
             this.generateEnemies();
         }
 
-        if (this.enemyGeneratingConter % this.fighterRate == 0) {
+        if (this.frameCounter % this.fighterRate == 0) {
             int randomX = this.randomEnemyXGenerator.nextInt(this.gameEngine.getGameWidth() - EnemyDestroyer.DEFAULT_WIDTH);
             this.enemyShips.add(new EnemyDestroyer(randomX, 0 - EnemyDestroyer.DEFAULT_HEIGHT));
         }
 
-        this.player.move(this.gameEngine.inputHandler);
+        if (this.frameCounter > 5) {
+            this.player.move(this.gameEngine.inputHandler);
+        }
+
+        this.setPlayerBounds();
         this.player.tick();
         this.backGround.tick();
-
-
 
         if (this.explosions.size() >= 0) {
             for (int i = 0; i < this.explosions.size(); i++) {
                 this.explosions.get(i).tick();
             }
         }
+
+        if (this.player.getHealth() <= 0) {
+            StateManager.setState(new Menu(this.gameEngine));
+        }
     }
 
     @Override
     public void render(Graphics graphics) {
         this.backGround.render(graphics);
+
         for (EnemyShip enemyShip : this.enemyShips) {
             enemyShip.render(graphics);
         }
+
+        graphics.setColor(new Color(255, 255, 255));
+        graphics.fillRect(599, 9, this.player.getHealth() * 2 + 2, 27);
+        if (this.player.getIsHit()) {
+            graphics.setColor(new Color(255, 243, 22));
+        } else {
+            graphics.setColor(new Color(255, 35, 48));
+        }
+
+        graphics.fillRect(600, 10, this.player.getHealth() * 2, 25);
+        graphics.setFont(new Font("Arial", Font.BOLD, 15));
+        graphics.setColor(Color.WHITE);
+        graphics.drawString("HP", 575, 29);
+        graphics.drawString(String.format("%d", this.player.getHealth()), 600 + ((this.player.getHealth() * 2) / 2) - 4, 29);
 
         this.player.render(graphics);
 
@@ -79,9 +106,6 @@ public class GameState extends State {
                 }
             }
         }
-
-        graphics.setColor(Color.WHITE);
-        graphics.drawString(String.format("%d", this.player.getHealth()), 10, 590);
     }
 
     protected void updateShips() {
@@ -146,11 +170,20 @@ public class GameState extends State {
                 int currentHealth = this.player.getHealth() - projectile.getDamage();
                 enemy.getProjectiles().remove(index);
                 this.player.setHealth(currentHealth);
+                this.player.setIsHit(true);
             }
 
             if (projectile.getY() >= this.gameEngine.getGameHeight()) {
                 enemy.getProjectiles().remove(index);
             }
+        }
+    }
+
+    private void setPlayerBounds() {
+        if (this.player.getX() <= 5) {
+            this.player.setX(5);
+        } else if (this.player.getX() >= this.gameEngine.getGameWidth() - this.player.getWidth() + 5) {
+            this.player.setX(this.gameEngine.getGameWidth() - this.player.getWidth() + 5);
         }
     }
 }

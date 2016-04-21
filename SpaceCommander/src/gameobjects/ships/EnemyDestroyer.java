@@ -8,9 +8,10 @@ import java.awt.*;
 import java.util.Random;
 
 public class EnemyDestroyer extends EnemyShip {
-    private static final int DEFAULT_HEALTH = 20;
-    private static final int DEFAULT_VELOCITY = 1;
-    public static final int DEFAULT_WIDTH = 40;
+    private static final int SCORE_POINTS = 10;
+    private static final int DEFAULT_HEALTH = 40;
+    private static final int DEFAULT_VELOCITY = 2;
+    public static final int DEFAULT_WIDTH = 50;
     public static final int DEFAULT_HEIGHT = 64;
     private static final int SHOOTING_RATE = 70;
 
@@ -18,8 +19,8 @@ public class EnemyDestroyer extends EnemyShip {
     private Random randomXVelocityGenerator;
 
     public EnemyDestroyer(int x, int y) {
-        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_VELOCITY, DEFAULT_HEALTH, SHOOTING_RATE);
-        this.xVelocities = new int[] {3, 4, -4, -3};
+        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_VELOCITY, DEFAULT_HEALTH, SHOOTING_RATE, SCORE_POINTS);
+        this.xVelocities = new int[] {2, 3, -2, -3};
         this.randomXVelocityGenerator = new Random();
         int xVelocityIndex = this.randomXVelocityGenerator.nextInt(4);
         this.setXVelocity(this.xVelocities[xVelocityIndex]);
@@ -32,7 +33,7 @@ public class EnemyDestroyer extends EnemyShip {
             this.shoot();
             this.setShootingCounter(0);
         }
-        this.getBoundingBox().setBounds(this.x, this.y, this.width, this.height);
+        this.getBoundingBox().setBounds(this.x + 9, this.y, this.width - 18, this.height);
         if (this.getHealth() <= 0) {
             this.setIsAlive(false);
         }
@@ -44,7 +45,7 @@ public class EnemyDestroyer extends EnemyShip {
         int currentX = this.getX() + this.getXVelocity();
         this.setX(currentX);
 
-        for (Projectile projectile : projectiles) {
+        for (Projectile projectile : this.projectiles) {
             projectile.tick();
         }
     }
@@ -55,8 +56,8 @@ public class EnemyDestroyer extends EnemyShip {
             projectile.render(graphics);
         }
 
-        if (this.getIsHit() &&this.getIsAlive()) {
-            graphics.drawImage(Assets.enemyFighter, this.x, this.y, this.width, this.height, null);
+        if (this.getIsHit() && this.getIsAlive()) {
+            graphics.drawImage(Assets.damagesDestroyer, this.x, this.y, this.width, this.height, null);
         } else if (this.getIsAlive()) {
             graphics.drawImage(Assets.enemyFighter, this.x, this.y, this.width, this.height, null);
         }
